@@ -3,17 +3,32 @@ Exercises, Labs, and Projects for COMP 215 Intro. to Computational Science at **
 
 ## Directory Structure
 
-### examples
-Complete notebooks used in-class to demonstrate principles
-
-### exercises
-Starter notebooks used in-class as a starting point for group exercises and practice problems
-
 ### labs
 Starter notebooks for lab assignments
 
-### weekly
-Notebooks used during class to answer questions and test ideas that arose during class in a given week
+### lessons
+In-class lessons, examples, and reference material. <br>  
+Weekly notebooks are used during class to structure discussion, answer questions,
+and to demonstrate or test ideas that arose during class in a given week. <br>
+Students should have a copy open and follow along during class.
+
+foundations
+: reference notebooks that review and demonstrate fundamental python programming concepts,
+  and built-in functions & data structures covered in the weekly lessons
+
+concepts
+: notebooks that elaborate on the scientific concepts and models covered in the weekly lessons
+
+algorithms
+: library notebooks that develop & present a re-usable algorithm and/or data structure
+that is used in the lessons, labs, or projects.
+
+*Note*: for simplicity, rather than trying to `import` these as modules, 
+         simply copy-paste what you need into the notebook you are working in.
+
+exercises
+: starter notebooks for in-class exercises and practice problems
+
 
 ## Branch Strategy
 _Problem_
