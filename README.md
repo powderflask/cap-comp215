@@ -30,17 +30,32 @@ that are re-used in the lessons, labs, or projects.
 ## Branch Strategy
 
 _Problem_
-: want to retain term history in repo, ideally a branch for each semester.
+: retain term history in repo, ideally a branch for each semester.
 
-  * students will not remember to load content from a "semester" branch
-  * simplest for all if everyone just works from `main` branch
+  * keep it as simple as possible for students: reduce chance of mistakes; avoid merge conflicts
+  * simplest for all if everyone just works in `default` branch
 
 _Solution_
-: use a "release branch" strategy to save semester's work at end of term and re-use `main`  over successive terms.
+: use "release branch" strategy; work in "semester" release branch each term.
 
-1. fork this repository
-2. create a `template` branch (save a copy of the original codebase as a template)
-3. work in `main` branch for production (current term), students open lab assignments, exercises, and examples from `main`
-4. end of term, create a branch from `main` named for the term (e.g., `2023-Spring`) to backup work
-5. merge any changes you want to keep back into `template` branch
-6. override `main` with fresh copy of `template`, ready for next term
+1. develop courseware, fix bugs in `main` branch
+1. students work in `semester` branch, which is `default` branch and copy of `main` made at start of term.
+1. post solutions and completed workbooks in `instructor` folder of `semester` branch 
+
+_Process_
+
+1. start of term:
+    * create a `semester` branch from main (`git checkout -b 2024-Spr main`; `git push origin 2024-Spr`)
+    * make the semester branch the `default` on GH
+    * consider removing any solutions from previous term's branch to a private local branch
+1. work in `semester` branch for production (current term):
+    * students open lab assignments, exercises, and examples from `semester`
+    * instructor posts completed workbooks and sample solutions to `instructor` folder on `semester` branch
+    * careful not to update any notebooks in `semeseter` branch that might create merge conflicts for students
+1. updating courseware during term:
+    * fix bugs, enhancements, new lessons, etc. in `main` branch
+    * advanced students can also make PR's to `main` branch
+    * merge bug fixes back to `semester` branch only for notebooks not yet modified by students
+    * students should always be able to update `semester` branch without conflict
+1. end of term:
+    * merge any changes you want to keep from `semester` branch back into `main` branch
