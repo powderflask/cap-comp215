@@ -26,8 +26,13 @@ that are re-used in the lessons, labs, or projects.
 *Note*: for simplicity, rather than trying to `import` these as modules, 
          simply copy-paste what you need into the notebook you are working in.
 
+### solutions
+Sample solutions completed in class and lab.
+This folder is for the **instructor** to post solutions.  
+Modifying or saving files to this folder can cause "merge conflicts" - please don't.
 
-## Branch Strategy
+
+## Instructor's Branch Strategy
 
 _Problem_
 : retain term history in repo, ideally a branch for each semester.
@@ -36,41 +41,38 @@ _Problem_
   * simplest for all if everyone just works in `default` branch
 
 
-_Pragmatic Solution_
-: use "release branch" strategy; work in "main" release branch each term.
+_Ideal Solution_
+: use "release branch" strategy for term archive; with "feature branch" named `main` for student work.
 
 * Collab always shows `main` as default branch (or alphabetical), regardless of actual default set in GH
-* Modified version of *Ideal Solution* below to avoid students needing to select correct branch
+* Students less likely to lose changes during fork sync if working in a different branch
 
-1. develop courseware, fix bugs in `template` branch
-1. students work in `main` branch, which is `default` branch and copy of `template` made at start of term.
-1. post solutions and completed workbooks in `solutions` branch
+1. develop courseware, fix bugs in `template` branch (master branch for repo)
+1. each term, create `semester` branch (named for semester;  set to default branch on GitHub)
+1. when students fork repo, they create a `main` branch and make this their default branch on GitHub.
+1. students work in their `main`/ `default` "feature branch".
+1. students can sync fork any time without conflicts;  use a pull-request to merge changes into `main`
 
 _Process_
 
 1. start of term:
-    * create a `main` branch from `template` (`git checkout -b main template`; `git push origin main`)
-    * make the `main` branch the `default` on GH
+    * create a `semester` branch from `template` (`git checkout -b 2024.01 template`; `git push origin 2024.01`)
+    * make the `2024.01` branch the `default` on GH
     * consider removing any `solutions` from previous term's branch to a private local branch
-1. work in `main` branch for production (current term):
+1. student fork; create `main` branch; set it to `default`; work in `main` branch for production (current term):
     * students open lab assignments, exercises, and examples from `main`
-    * careful not to update any notebooks in `main` branch that might create merge conflicts for students
-    * instructor posts completed workbooks and sample solutions to `solutions` branch
 1. updating courseware during term:
     * fix bugs, enhancements, new lessons, etc. in `template` branch
     * advanced students can also make PR's to `template` branch
-    * merge bug fixes back to `main` branch only for notebooks not yet modified by students
-    * students should always be able to sync / update `main` branch without conflict
+    * merge bug fixes back to `semester` branch only for notebooks not yet modified by students
+    * instructor posts completed workbooks and sample solutions to `solutions` folder in `semester` branch
+    * students should always be able to sync / update `semester` branch without conflict
+    * students can use a pull-request to merge changes from `semester` branch to `main` in controlled way
 1. end of term:
-    * merge any changes you want to keep from `main` branch back into `template` branch
-    * rename `main` to archive term's work:
-      * > git branch -m main 2024.01
-      * > git branch -a
-      * > git push origin main 2024.01 
-      * > git push origin –u 2024.01
+    * merge any changes you want to keep from `semester` branch back into `template` branch
  
 
-_Ideal Solution_
+_Simple Solution_
 : use "release branch" strategy; work in "semester" release branch each term.
 
 1. develop courseware, fix bugs in `main` branch
